@@ -43,15 +43,28 @@ input {
 	margin-bottom: 10px;
 }
 .listProducts li .deleteBtn { 
-	margin-left: 10px;
+	margin-left: 25px;
 	color: #CF4647;	
 }
 .listProducts li span {  
 	cursor: pointer;
+	position: relative;;
 }
 .editField { 
 	border: none;
 	border-bottom: 1px solid #ccc;
 	font-style: italic;
 	color: grey;
+}
+.editBtn {
+	margin-left: 10px;
+	color: #076461;
+}
+.editBtn i {
+	position: absolute;
+	top: 2px;
+}
+.productValue {
+	min-width: 65px;
+    display: inline-block;
 }

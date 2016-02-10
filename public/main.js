@@ -1,4 +1,5 @@
-
-$(document).ready(function () {
-	var products = new Products('.container');
-});
+window.onload = function() {
+	var products = new Products('.container'),
+		productField = document.querySelector('.fieldProduct');
+	productField.focus();
+};

@@ -1,3 +1,4 @@
+//craeted by NastyaBezruk
 var AJAX = {
     GET: function (url, callback) {
         var xhr = new XMLHttpRequest();
@@ -7,11 +8,7 @@ var AJAX = {
         xhr.send();
 
         xhr.onreadystatechange = function () {
-            if (this.readyState != 4) return;
-
-            // по окончании запроса доступны:
-            // status, statusText
-            // responseText, responseXML (при content-type: text/xml)
+            if (this.readyState != 4) return;          
 
             if (this.status != 200) {
                 // обработать ошибку
@@ -20,8 +17,7 @@ var AJAX = {
             }
 
             console.log(xhr.response);
-            callback(JSON.parse(xhr.response));
-            // получить результат из this.responseText или this.responseXML
+            callback(JSON.parse(xhr.response));           
         }
     },
     POST: function (url, callback, data) {
@@ -36,10 +32,6 @@ var AJAX = {
         xhr.onreadystatechange = function () {
             if (this.readyState != 4) return;
 
-            // по окончании запроса доступны:
-            // status, statusText
-            // responseText, responseXML (при content-type: text/xml)
-
             if (this.status != 200) {
                 // обработать ошибку
                 console.log('Error');
@@ -48,7 +40,7 @@ var AJAX = {
 
             console.log(xhr.response);
             callback(JSON.parse(xhr.response));
-            // получить результат из this.responseText или this.responseXML
+            
         }
     },
     DELETE: function (url, callback) {
@@ -101,7 +93,7 @@ var Products = (function () {
         this.root = document.querySelector(root);
         this.listItem = this.root.querySelector('.listProducts');
         this.addBtn = this.root.querySelector('.add');        
-        this.productField = this.root.querySelector('.fieldProduct');
+        this.productField = this.root.querySelector('.fieldProduct');        
         this.getItems();
         this.addEvents();
     }
@@ -124,12 +116,17 @@ var Products = (function () {
 
         li = document.createElement('li');
         title = document.createElement('span');
-        deleteBtn = document.createElement('span'); 
+        deleteBtn = document.createElement('span');
+        editBtn = document.createElement('span');
         editField = document.createElement('input');
         editField.style.display = 'none';      
+        
+        title.classList.add('productValue');
         editField.classList.add('editField');
-
         deleteBtn.classList.add('deleteBtn');
+        editBtn.classList.add('editBtn');
+        
+        editBtn.innerHTML = '<i class="fa fa-pencil-square-o"></i>'
         deleteBtn.innerHTML = '<i class="fa fa-times"></i>';
         deleteBtn.addEventListener('click', function () {
             self.removeFruits(i);
@@ -139,13 +136,22 @@ var Products = (function () {
         editField.value = text;    
         li.appendChild(title);
         li.appendChild(editField);
+        li.appendChild(editBtn);
         li.appendChild(deleteBtn);
 
+        
         title.addEventListener('dblclick', function () {            
             editField.style.display = 'inline-block';
             editField.focus();
             this.style.display = 'none';
         });
+
+        editBtn.addEventListener('click', function () {            
+            editField.style.display = 'inline-block';
+            editField.focus();
+            title.style.display = 'none';
+        });
+
 
         editField.addEventListener('blur', function (e) {
             self.edit(this.value, i);
@@ -159,7 +165,7 @@ var Products = (function () {
             this.style.display = 'none';
             title.style.display = 'block';
            };
-        })
+        });
 
         return li;
     }
@@ -179,11 +185,12 @@ var Products = (function () {
         this.addBtn.addEventListener('click', function () {
             self.addFruits();
         });
+
         this.productField.addEventListener('keypress', function (e) {
             if(e.keyCode === 13) {
                 self.addFruits();
             }
-        })
+        });
     }
 
     Constructor.prototype.addFruits = function () {
@@ -218,9 +225,7 @@ var Products = (function () {
             self.renderAll();
         }, editItem);
         
-    };
-
-   
+    };  
 
     return Constructor;
 })();
