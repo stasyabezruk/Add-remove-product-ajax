@@ -1,0 +1,57 @@
+input {
+	outline: none;
+}
+.btn { 
+    padding: 8px 2px;
+    width: 125px;
+    background: #635063;;
+    float: right;    
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    height: 19px;
+}
+.container {  
+	width: 450px;
+	margin: 40px auto;
+	padding: 40px;
+    background: #F2E8D8;
+}
+.wrapper {  
+	float: left;
+	width: 100%;	
+}
+.fieldProduct { 
+	float: left; 
+	width: 290px;
+	height: 21px;
+    padding: 5px 8px;
+    border: 2px solid white;   
+}
+.fieldProduct:focus { 
+	border: 2px solid #635063;
+}
+.listProducts {  
+	float: left;
+    list-style: decimal;
+    padding: 10px 10px 10px 30px;
+    background: white;
+    width: 270px;
+}
+.listProducts li { 
+	margin-bottom: 10px;
+}
+.listProducts li .deleteBtn { 
+	margin-left: 10px;
+	color: #CF4647;	
+}
+.listProducts li span {  
+	cursor: pointer;
+}
+.editField { 
+	border: none;
+	border-bottom: 1px solid #ccc;
+	font-style: italic;
+	color: grey;
+}
